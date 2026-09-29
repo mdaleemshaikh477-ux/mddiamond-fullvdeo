@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +29,7 @@
             width: 100%;
             max-width: 520px;
 
-            background: white;
+            background: #ffffff;
 
             padding: 40px 30px;
 
@@ -38,7 +37,7 @@
 
             text-align: center;
 
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
         }
 
         .success {
@@ -66,6 +65,7 @@
 
         .description {
             color: #666;
+
             line-height: 1.6;
 
             margin-bottom: 25px;
@@ -83,6 +83,7 @@
 
         .code-label {
             font-size: 12px;
+
             color: #777;
 
             margin-bottom: 5px;
@@ -90,19 +91,22 @@
 
         #accessCode {
             font-size: 20px;
+
             font-weight: bold;
 
             letter-spacing: 1px;
+
+            word-break: break-all;
         }
 
-        .whatsapp-button {
+        .instagram-button {
             display: block;
 
             width: 100%;
 
             padding: 16px;
 
-            background: #25D366;
+            background: #E1306C;
 
             color: white;
 
@@ -117,8 +121,10 @@
             transition: 0.2s;
         }
 
-        .whatsapp-button:hover {
-            background: #1ebe5d;
+        .instagram-button:hover {
+            opacity: 0.9;
+
+            transform: translateY(-1px);
         }
 
         .note {
@@ -149,14 +155,14 @@
 
 <div class="card">
 
-    <!-- SUCCESS ICON -->
+    <!-- SUCCESS -->
 
     <div class="success">
         ✓
     </div>
 
 
-    <!-- HEADING -->
+    <!-- TITLE -->
 
     <h1>
         Thank You! 🎉
@@ -170,7 +176,7 @@
     </p>
 
 
-    <!-- CODE -->
+    <!-- ACCESS CODE -->
 
     <div class="code-box">
 
@@ -196,22 +202,22 @@
     </div>
 
 
-    <!-- WHATSAPP BUTTON -->
+    <!-- INSTAGRAM BUTTON -->
 
     <a
-        id="whatsappButton"
-        class="whatsapp-button"
+        id="instagramButton"
+        class="instagram-button"
         href="#"
         target="_blank"
         rel="noopener noreferrer"
     >
-        💬 Get Full Video on WhatsApp
+        📩 Get Full Video on Instagram
     </a>
 
 
     <p class="note">
-        WhatsApp will open with your access code already filled in.
-        Just press Send.
+        Tap the button to open Instagram and message us.
+        Send your access code to receive your full video.
     </p>
 
 </div>
@@ -220,28 +226,29 @@
 <script>
 
     /*
-    ============================================
-    YOUR WHATSAPP NUMBER
-    ============================================
+    ==================================================
+    INSTAGRAM USERNAME
+    ==================================================
 
-    India example:
-
-    919876543210
-
-    + sign mat lagana.
-    */
-
-    const whatsappNumber = "918750977296";
-
-
-    /*
-    ============================================
-    GET CODE FROM URL
-    ============================================
+    Apna Instagram username yahan daalo.
 
     Example:
 
-    thank-you.html?code=VIDEO_A72K
+    const instagramUsername = "myvideopage";
+
+    */
+
+    const instagramUsername = "yourusername";
+
+
+    /*
+    ==================================================
+    GET ACCESS CODE FROM URL
+    ==================================================
+
+    Example:
+
+    https://yourdomain.com/thank-you.html?code=VIDEO_A72K
 
     */
 
@@ -253,9 +260,9 @@
 
 
     /*
-    ============================================
-    CHECK CODE
-    ============================================
+    ==================================================
+    CHECK ACCESS CODE
+    ==================================================
     */
 
     if (!accessCode) {
@@ -266,13 +273,13 @@
         document.getElementById("errorMessage")
             .style.display = "block";
 
-        document.getElementById("whatsappButton")
+        document.getElementById("instagramButton")
             .style.display = "none";
 
     } else {
 
         /*
-        Show code on page
+        Show access code
         */
 
         document.getElementById("accessCode")
@@ -280,40 +287,27 @@
 
 
         /*
-        ========================================
-        WHATSAPP MESSAGE
-        ========================================
+        ==================================================
+        INSTAGRAM PROFILE / DM URL
+        ==================================================
+
+        Instagram DM link:
+
+        https://ig.me/m/USERNAME
+
         */
 
-        const message =
-            `Hi, I have completed my payment.
-
-My access code is: ${accessCode}
-
-Please send me my full video.`;
+        const instagramURL =
+            "https://ig.me/m/" +
+            instagramUsername;
 
 
         /*
-        ========================================
-        CREATE WHATSAPP LINK
-        ========================================
+        Set Instagram button
         */
 
-        const whatsappURL =
-            "https://wa.me/" +
-            whatsappNumber +
-            "?text=" +
-            encodeURIComponent(message);
-
-
-        /*
-        ========================================
-        SET BUTTON LINK
-        ========================================
-        */
-
-        document.getElementById("whatsappButton")
-            .href = whatsappURL;
+        document.getElementById("instagramButton")
+            .href = instagramURL;
 
     }
 
